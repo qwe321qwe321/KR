@@ -65,7 +65,7 @@ package pi.KR;
  * import javax.swing.JTextField;
  * JTextField firstTextField = new JTextField("Первое текстовое поле");
  * JTextField secondTextField = new JTextField("Второе текстовое поле");
- * JTextField thirdTextField = new JTextField("Третье текстовое поле"); */
+ * JTextField thirdTextField = new JTextField("Третье текстовое поле"). */
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -126,26 +126,27 @@ class CalcMain extends JFrame {
      * wfOval - площадь оконной рамы (Овальная ОК)
      * selectedType - применяется для определения выбранного типа ОК в условии в слушателе кнопок actionPerformed()
      * (0 - Прямоугольная ОК, 1 - Круглая ОК, 2 - Овальная ОК) */
-    final int x = 229; final int y = 15; final int xo = 99; final int yo = 29;
-    final int xI = 87; final int yI = 205; final int xoI = 100; final int yoI = 29;
+    final int x = 224; final int y = 10; final int xo = 99; final int yo = 29;
+    final int xI = 82; final int yI = 200; final int xoI = 100; final int yoI = 29;
     int S1c; double S2c; int wfRectangle; double wfRound; double wfOval; int selectedType = 0;
     
     /* Инициализация всех объектов.
      * 
      * Верхняя область окна содержит следующие объекты:
-     * Текстовые поля - labelType, labelHeight, labelWeight, labelRadius, labelMaterial, labelSealing, labelAnswer1,
-     * labelAnswer2 labelAnswer3, labelAnswer4;
-     * Поля ввода - fieldHeight, fieldWeight, fieldRadius;
-     * Выпадающие списки - comboBox1, comboBox2, comboBox3
-     * Кнопки - buttonType, buttonCalculate;
+     * JLabel, принимающие в качестве параметра строки текста - labelType, labelHeight, labelWeight,
+     * labelRadius, labelMaterial, labelSealing, labelAnswer1, labelAnswer2 labelAnswer3, labelAnswer4;
+     * JTextField - fieldHeight, fieldWeight, fieldRadius;
+     * JComboBox, принимающие в качестве параметра массивы строк - comboBox1, comboBox2, comboBox3;
+     * JButton - buttonType, buttonCalculate.
      * 
      * Нижняя область окна содержит следующие объекты:
-     * Изображения - rectangleDefaultImageJLabel, rectangleImageJLabel, roundDefaultImageJLabel,
-     * roundImageJLabel, ovalDefaultImageJLabel, ovalImageJLabel;
-     * Текстовые поля - imageLabelHeight, imageLabelHeightError, imageLabelWeight, imageLabelWeightError,
-     * imageLabelRadius, imageLabelRadiusError, imageLabelGlass1, imageLabelGlassError1 imageLabelGlass2,
+     * JLabel, принимающие в качестве параметра экземпляры ImageIcon - rectangleDefaultImageJLabel, rectangleImageJLabel,
+     * roundDefaultImageJLabel, roundImageJLabel, ovalDefaultImageJLabel, ovalImageJLabel;
+     * JLabel, принимающие в качестве параметра строки текста - imageLabelHeight, imageLabelHeightError, imageLabelWeight,
+     * imageLabelWeightError, imageLabelRadius, imageLabelRadiusError, imageLabelGlass1, imageLabelGlassError1, imageLabelGlass2,
      * imageLabelGlassError2, imageLabelSealing, imageLabelSealingError, imageLabelWfRec, imageLabelWfErrorRec,
-     * imageLabelWfRound, imageLabelWfErrorRound, imageLabelWfOval, imageLabelWfErrorOval;
+     * imageLabelWfRound, imageLabelWfErrorRound, imageLabelWfOval, imageLabelWfErrorOval.
+     * 
      * 
      * Прочие параметры:
      * format - экземпляр класса DecimalFormat, в качестве параметра содержит форматирование;
@@ -159,7 +160,7 @@ class CalcMain extends JFrame {
      * imageStringSealing - строка со значением площади уплотнения, полученным после проверки и вычисления;
      * imageStringWfRectangle - строка со значением площади оконной рамы, полученным после проверки и вычисления (Прямоугольная ОК);
      * imageStringWfRound - строка со значением площади оконной рамы, полученным после проверки и вычисления (Круглая ОК);
-     * imageStringWfOval - строка со значением площади оконной рамы, полученным после проверки и вычисления (Овальная ОК); */
+     * imageStringWfOval - строка со значением площади оконной рамы, полученным после проверки и вычисления (Овальная ОК). */
     JLabel labelType = new JLabel("Выберите оконную конструкцию");
     JLabel labelHeight = new JLabel("Высота (см)");
     JLabel labelWeight = new JLabel("Ширина (см)");
@@ -199,7 +200,16 @@ class CalcMain extends JFrame {
     JComboBox<String> comboBoxSealing = new JComboBox<String>(comboSealing);
     DecimalFormat format = new DecimalFormat("##.00");
 	
-	/* Конструктор. Метод super() устанавливает заголовок будущего окна. */
+	/* Конструктор CalcMain(). Конструктор — это метод класса, который инициализирует новый объект после его создания.
+	 * В данном случае, при вызове конструктора вызываются методы super() и createGUI().
+	 * Метод super() устанавливает заголовок будущего окна, принимая в качестве параметра строку текста.
+	 * Имя конструктора всегда совпадает с именем класса, в котором он расположен.
+	 * У конструкторов нет типа возвращаемого результата - никакого, даже void.
+	 * Суть его использования в том, что не всегда удобно инициализировать все переменные класса при создании его экземпляра.
+	 * Иногда проще, чтобы какие-то значения были бы созданы по умолчанию при создании объекта.
+	 * Т.е. конструктор нужен для автоматической инициализации переменных.
+	 * Соответственно, в данном случае, вызов конструктора всегда инициирует создание нового окна с заголовком "Расчет оконной конструкции".
+	 * */
 	public CalcMain() {
 		super("Расчет оконной конструкции");
 		createGUI();
@@ -362,7 +372,7 @@ class CalcMain extends JFrame {
 		}
 	}
 	
-	/* Метод fieldCheck() проверяет поле на ввод числа и переполнение. */
+	/* Метод fieldCheck() проверяет строку (поле) на ввод числа и переполнение. */
 	public int fieldCheck(String word) {
 		/* Инициализация переменной вывода. */
 		int zero = 0;
@@ -477,55 +487,21 @@ class CalcMain extends JFrame {
 			add(labelAnswer4);
 	        imageStringHeight = String.valueOf(fieldCheck(fieldHeight.getText()));
 	        fieldHeight.setText(imageStringHeight);
-	        switch (imageStringHeight.length()) {
-	        case 1:
+	        if (0 < imageStringHeight.length() & imageStringHeight.length() < 5) {
 	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+13, yI+223, xoI, yoI);
+	        	imageLabelHeight.setBounds(xI+17-(4*imageStringHeight.length()), yI+223, xoI, yoI);
 	        	add(imageLabelHeight);
-	        	break;
-	        case 2:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+9, yI+223, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        case 3:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+5, yI+223, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        case 4:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+1, yI+223, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        default:
+	        } else {
 	        	imageLabelHeightError.setBounds(xI, yI+223, xoI, yoI);
 	        	add(imageLabelHeightError);
 	        }
 	        imageStringWeight = String.valueOf(fieldCheck(fieldWeight.getText()));
 	        fieldWeight.setText(imageStringWeight);
-	        switch (imageStringWeight.length()) {
-	        case 1:
+	        if (0 < imageStringWeight.length() & imageStringWeight.length() < 5) {
 	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+245, yI, xoI, yoI);
+	        	imageLabelWeight.setBounds(xI+249-(4*imageStringWeight.length()), yI, xoI, yoI);
 	        	add(imageLabelWeight);
-	        	break;
-	        case 2:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+241, yI, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        case 3:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+237, yI, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        case 4:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+233, yI, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        default:
+	        } else {
 	        	imageLabelWeightError.setBounds(xI+233, yI, xoI, yoI);
 	        	add(imageLabelWeightError);
 	        }
@@ -536,94 +512,20 @@ class CalcMain extends JFrame {
 	        	add(imageLabelGlassError2);
 	        } else {
 		        imageStringGlass1 = String.valueOf(S1c);
-		        switch (imageStringGlass1.length()) {
-		        case 1:
+		        if (0 < imageStringGlass1.length() & imageStringGlass1.length() < 9) {
 		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+150, yI+223, xoI, yoI);
+		        	imageLabelGlass1.setBounds(xI+154-(4*imageStringGlass1.length()), yI+223, xoI, yoI);
 		        	add(imageLabelGlass1);
-		        	break;
-		        case 2:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+146, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 3:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+144, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 4:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+140, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 5:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+136, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 6:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+132, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 7:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+128, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 8:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+124, yI+223, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        default:
+		        } else {
 		        	imageLabelGlassError1.setBounds(xI+140, yI+223, xoI, yoI);
 		        	add(imageLabelGlassError1);
 		        }
 		        imageStringGlass2 = String.valueOf(S1c);
-		        switch (imageStringGlass2.length()) {
-		        case 1:
+		        if (0 < imageStringGlass2.length() & imageStringGlass2.length() < 9) {
 		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+344, yI+223, xoI, yoI);
+		        	imageLabelGlass2.setBounds(xI+348-(4*imageStringGlass2.length()), yI+223, xoI, yoI);
 		        	add(imageLabelGlass2);
-		        	break;
-		        case 2:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+340, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 3:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+336, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 4:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+332, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 5:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+328, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 6:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+324, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 7:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+320, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        case 8:
-		        	imageLabelGlass2.setText(imageStringGlass2);
-		        	imageLabelGlass2.setBounds(xI+316, yI+223, xoI, yoI);
-		        	add(imageLabelGlass2);
-		        	break;
-		        default:
+		        } else {
 		        	imageLabelGlassError2.setBounds(xI+332, yI+223, xoI, yoI);
 		        	add(imageLabelGlassError2);
 		        }
@@ -673,33 +575,11 @@ class CalcMain extends JFrame {
 	        	add(imageLabelErrorWfRound);
 	        } else {
 		        imageStringWfRound = String.valueOf(format.format(wfRound));
-		        switch (imageStringWfRound.length()) {
-		        case 5:
+		        if (0 < imageStringWfRound.length() & imageStringWfRound.length() < 10) {
 		        	imageLabelWfRound.setText(imageStringWfRound);
-			    	imageLabelWfRound.setBounds(xI+230, yI+23, xoI, yoI);
+			    	imageLabelWfRound.setBounds(xI+250-(4*imageStringWfRound.length()), yI+23, xoI, yoI);
 			    	add(imageLabelWfRound);
-		        	break;
-		        case 6:
-		        	imageLabelWfRound.setText(imageStringWfRound);
-			    	imageLabelWfRound.setBounds(xI+226, yI+23, xoI, yoI);
-			    	add(imageLabelWfRound);
-		        	break;
-		        case 7:
-		        	imageLabelWfRound.setText(imageStringWfRound);
-			    	imageLabelWfRound.setBounds(xI+222, yI+23, xoI, yoI);
-			    	add(imageLabelWfRound);
-		        	break;
-		        case 8:
-		        	imageLabelWfRound.setText(imageStringWfRound);
-			    	imageLabelWfRound.setBounds(xI+218, yI+23, xoI, yoI);
-			    	add(imageLabelWfRound);
-		        	break;
-		        case 9:
-		        	imageLabelWfRound.setText(imageStringWfRound);
-			    	imageLabelWfRound.setBounds(xI+215, yI+23, xoI, yoI);
-			    	add(imageLabelWfRound);
-		        	break;
-		        default:
+		        } else {
 		        	imageLabelErrorWfRound.setBounds(xI+230, yI+23, xoI, yoI);
 		        	add(imageLabelErrorWfRound);
 		        }
@@ -712,7 +592,7 @@ class CalcMain extends JFrame {
 		        imageLabelGlass1.setText(imageStringGlass1);
 		        imageLabelGlass1.setBounds(xI+250, yI+214, xoI, yoI);
 		        add(imageLabelGlass1);
-		        }
+		    }
 	        imageStringSealing = String.valueOf(1);
 	        imageLabelSealing.setText(imageStringSealing);
 	        imageLabelSealing.setBounds(xI+70, yI+48, xoI, yoI);
@@ -740,55 +620,21 @@ class CalcMain extends JFrame {
 			add(labelAnswer4);
 	        imageStringHeight = String.valueOf(fieldCheck(fieldHeight.getText()));
 	        fieldHeight.setText(imageStringHeight);
-	        switch (imageStringHeight.length()) {
-	        case 1:
+	        if (0 < imageStringHeight.length() & imageStringHeight.length() < 5) {
 	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+67, yI+212, xoI, yoI);
+	        	imageLabelHeight.setBounds(xI+71-(4*imageStringHeight.length()), yI+212, xoI, yoI);
 	        	add(imageLabelHeight);
-	        	break;
-	        case 2:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+62, yI+212, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        case 3:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+56, yI+212, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        case 4:
-	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+49, yI+212, xoI, yoI);
-	        	add(imageLabelHeight);
-	        	break;
-	        default:
+	        } else {
 	        	imageLabelHeightError.setBounds(xI+48, yI+212, xoI, yoI);
 	        	add(imageLabelHeightError);
 	        }
 	        imageStringWeight = String.valueOf(fieldCheck(fieldWeight.getText()));
 	        fieldWeight.setText(imageStringWeight);
-	        switch (imageStringWeight.length()) {
-	        case 1:
+	        if (0 < imageStringWeight.length() & imageStringWeight.length() < 5) {
 	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+237, yI-4, xoI, yoI);
+	        	imageLabelWeight.setBounds(xI+241-(4*imageStringWeight.length()), yI-4, xoI, yoI);
 	        	add(imageLabelWeight);
-	        	break;
-	        case 2:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+233, yI-4, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        case 3:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+229, yI-4, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        case 4:
-	        	imageLabelWeight.setText(imageStringWeight);
-	        	imageLabelWeight.setBounds(xI+225, yI-4, xoI, yoI);
-	        	add(imageLabelWeight);
-	        	break;
-	        default:
+	        } else {
 	        	imageLabelWeightError.setBounds(xI+225, yI-4, xoI, yoI);
 	        	add(imageLabelWeightError);
 	        }
@@ -806,67 +652,10 @@ class CalcMain extends JFrame {
 	        	imageLabelGlassError1.setBounds(xI+226, yI+212, xoI, yoI);
 	        	add(imageLabelGlassError1);
 	        } else {
-		        switch (imageStringGlass1.length()) {
-		        case 1:
+	        	if (0 < imageStringGlass1.length() & imageStringGlass1.length() < 13) {
 		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+246, yI+212, xoI, yoI);
+		        	imageLabelGlass1.setBounds(xI+250-(4*imageStringGlass1.length()), yI+212, xoI, yoI);
 		        	add(imageLabelGlass1);
-		        	break;
-		        case 2:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+242, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 3:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+238, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 4:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+234, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 5:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+230, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 6:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+226, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 7:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+222, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 8:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+218, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 9:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+214, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 10:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+210, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 11:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+206, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
-		        case 12:
-		        	imageLabelGlass1.setText(imageStringGlass1);
-		        	imageLabelGlass1.setBounds(xI+204, yI+212, xoI, yoI);
-		        	add(imageLabelGlass1);
-		        	break;
 		        }
 	        }
 	        imageStringSealing = String.valueOf(1);
@@ -876,8 +665,12 @@ class CalcMain extends JFrame {
 		    add(ovalImageJLabel);
 	        break;
 		}
+		/* Метод invalidate() помечает контейнер (JFrame) как недействительный.
+		 * Под этим понимается, что контейнер содержит что-то ненужное или дефективное, что должно быть изменено. */
 		invalidate();
+		/* Метод validate() помечает контейнер (JFrame) как действительный и инициализирует изменения. */
         validate();
+        /* Метод repaint() перерисовывает окно. */
         repaint();
 	}
 	
@@ -925,7 +718,7 @@ class CalcMain extends JFrame {
         /* SwingUtilities.invokeLater предназначена для запуска асинхронной операции.
 		 * Она сохраняет действие (Runnable), и запускает его на одной из следующих итераций цикла сообщений. */
 		SwingUtilities.invokeLater(new Runnable() {
-			/* Обращение к конструктору через метод. */
+			/* Вызов конструктора через метод run(). */
 			public void run() {
 				new CalcMain();
 			}
