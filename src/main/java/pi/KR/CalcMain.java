@@ -128,7 +128,7 @@ class CalcMain extends JFrame {
      * (0 - Прямоугольная ОК, 1 - Круглая ОК, 2 - Овальная ОК) */
     final int x = 224; final int y = 10; final int xo = 99; final int yo = 29;
     final int xI = 82; final int yI = 200; final int xoI = 100; final int yoI = 29;
-    int S1c; double S2c; int wfRectangle; double wfRound; double wfOval; int selectedType = 0;
+    int S1c; double S2c; int wfRectangle; double wfRound; double wfOval; byte selectedType = 0;
     
     /* Инициализация всех объектов.
      * 
@@ -146,7 +146,6 @@ class CalcMain extends JFrame {
      * imageLabelWeightError, imageLabelRadius, imageLabelRadiusError, imageLabelGlass1, imageLabelGlassError1, imageLabelGlass2,
      * imageLabelGlassError2, imageLabelSealing, imageLabelSealingError, imageLabelWfRec, imageLabelWfErrorRec,
      * imageLabelWfRound, imageLabelWfErrorRound, imageLabelWfOval, imageLabelWfErrorOval.
-     * 
      * 
      * Прочие параметры:
      * format - экземпляр класса DecimalFormat, в качестве параметра содержит форматирование;
@@ -240,9 +239,9 @@ class CalcMain extends JFrame {
         labelMaterial.setBounds(x+220, y, xo+1, yo+1);
         labelSealing.setBounds(x+313, y, xo+1, yo+1);
         labelAnswer1.setBounds(x-199, y+93, xo+301, yo+1);
-        labelAnswer2.setBounds(x-160, y+113, xo+301, yo+1);
-        labelAnswer3.setBounds(x-160, y+133, xo+301, yo+1);
-        labelAnswer4.setBounds(x-160, y+153, xo+301, yo+1);
+        labelAnswer2.setBounds(x-158, y+113, xo+301, yo+1);
+        labelAnswer3.setBounds(x-158, y+133, xo+301, yo+1);
+        labelAnswer4.setBounds(x-158, y+153, xo+301, yo+1);
         fieldHeight.setBounds(x, y+33, xo+1, yo+1);
         fieldWeight.setBounds(x+100, y+33, xo+1, yo+1);
         fieldRadius.setBounds(x, y+33, xo+101, yo+1);
@@ -301,13 +300,13 @@ class CalcMain extends JFrame {
 			if (Soc > 0) S1c = Soc/2;
 			forTest = So;
 			if (So < 0) labelAnswer1.setText("Ответ: "+error+" (Общая площадь оконной конструкции)");
-			else labelAnswer1.setText("Ответ: "+So+" см (Общая площадь оконной конструкции)");
+			else labelAnswer1.setText("Ответ: "+So+" см^2 (Общая площадь оконной конструкции)");
 			if (Sr < 0) labelAnswer2.setText(error+" (Площадь оконной рамы)");
-			else labelAnswer2.setText(Sr+" см (Площадь оконной рамы)");
+			else labelAnswer2.setText(Sr+" см^2 (Площадь оконной рамы)");
 			if (Su < 0) labelAnswer3.setText(error+" (Площадь уплотнения)");
-			else labelAnswer3.setText(Su+" см (Площадь уплотнения)");
+			else labelAnswer3.setText(Su+" см^2 (Площадь уплотнения)");
 			if (Soc < 0) labelAnswer4.setText(error+" (Площадь остекления)");
-			else labelAnswer4.setText(Soc+" см (Площадь остекления)");
+			else labelAnswer4.setText(Soc+" см^2 (Площадь остекления)");
 		}
 		return forTest;
 	}
@@ -332,18 +331,18 @@ class CalcMain extends JFrame {
 			Soc = So-Su-Sr;
 			if (Soc > 0) S2c = Soc;
 			if (So < 0) labelAnswer1.setText("Ответ: "+error+" (Общая площадь оконной конструкции)");
-			else labelAnswer1.setText("Ответ: "+format.format(So)+" см (Общая площадь оконной конструкции)");
+			else labelAnswer1.setText("Ответ: "+format.format(So)+" см^2 (Общая площадь оконной конструкции)");
 			if (Sr < 0) labelAnswer2.setText(error+" (Площадь оконной рамы)");
-			else labelAnswer2.setText(format.format(Sr)+" см (Площадь оконной рамы)");
+			else labelAnswer2.setText(format.format(Sr)+" см^2 (Площадь оконной рамы)");
 			if (Su < 0) labelAnswer3.setText(error+" (Площадь уплотнения)");
-			else labelAnswer3.setText(format.format(Su)+" см (Площадь уплотнения)");
+			else labelAnswer3.setText(format.format(Su)+" см^2 (Площадь уплотнения)");
 			if (Soc < 0) labelAnswer4.setText(error+" (Площадь остекления)");
-			else labelAnswer4.setText(format.format(Soc)+" см (Площадь остекления)");
+			else labelAnswer4.setText(format.format(Soc)+" см^2 (Площадь остекления)");
 		}
 	}
 	
 	/* Метод calculation() – перегруженный метод расчета оконной конструкции, в данном случае - Овальной. */
-	public void calculation(int h, int w, int nothing) {
+	public void calculation(int h, int w, byte nothing) {
 		/* Внешним переменным присваивается отрицательное значение, которое будет изменено на некоторое
 		 * положительное в случае, если будущее значение, передаваемое переменным, пройдет проверку. */
 		S2c = -1; wfOval = -1;
@@ -362,13 +361,13 @@ class CalcMain extends JFrame {
 			Sr = S-Soc;
 			if (Sr > 0) wfOval = Sr;
 			if (So < 0) labelAnswer1.setText("Ответ: "+error+" (Общая площадь оконной конструкции)");
-			else labelAnswer1.setText("Ответ: "+format.format(So)+" см (Общая площадь оконной конструкции)");
+			else labelAnswer1.setText("Ответ: "+format.format(So)+" см^2 (Общая площадь оконной конструкции)");
 			if (Sr < 0) labelAnswer2.setText(error+" (Площадь оконной рамы)");
-			else labelAnswer2.setText(format.format(Sr)+" см (Площадь оконной рамы)");
+			else labelAnswer2.setText(format.format(Sr)+" см^2 (Площадь оконной рамы)");
 			if (Su < 0) labelAnswer3.setText(error+" (Площадь уплотнения)");
-			else labelAnswer3.setText(format.format(Su)+" см (Площадь уплотнения)");
+			else labelAnswer3.setText(format.format(Su)+" см^2 (Площадь уплотнения)");
 			if (Soc < 0) labelAnswer4.setText(error+" (Площадь остекления)");
-			else labelAnswer4.setText(format.format(Soc)+" см (Площадь остекления)");
+			else labelAnswer4.setText(format.format(Soc)+" см^2 (Площадь остекления)");
 		}
 	}
 	
@@ -697,7 +696,7 @@ class CalcMain extends JFrame {
 					changeFrame(3);
 					break;
 				case 2:
-					calculation(fieldCheck(fieldHeight.getText()),fieldCheck(fieldWeight.getText()),0);
+					calculation(fieldCheck(fieldHeight.getText()),fieldCheck(fieldWeight.getText()),(byte)0);
 					changeFrame(5);
 					break;
 				}
@@ -718,7 +717,7 @@ class CalcMain extends JFrame {
         /* SwingUtilities.invokeLater предназначена для запуска асинхронной операции.
 		 * Она сохраняет действие (Runnable), и запускает его на одной из следующих итераций цикла сообщений. */
 		SwingUtilities.invokeLater(new Runnable() {
-			/* Вызов конструктора через метод run(). */
+			/* Вызов конструктора в методе run(). */
 			public void run() {
 				new CalcMain();
 			}
