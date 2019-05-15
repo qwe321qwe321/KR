@@ -191,7 +191,7 @@ class CalcMain extends JFrame {
     JTextField fieldRadius = new JTextField(10);
     JButton buttonCalculate = new JButton("Рассчитать");
     JButton buttonType = new JButton("Принять");
-    String[] comboTypes = {"Прямоугольная", "Круглая", "Овальная", "Арочная", "Треугольная"};
+    String[] comboTypes = {"Прямоугольная", "Круглая", "Овальная"};
     String[] comboMaterial = {"Дерево", "Алюминий", "ПВХ"};
     String[] comboSealing = {"Резиновое"};
     JComboBox<String> comboBoxTypes = new JComboBox<String>(comboTypes);
@@ -239,9 +239,9 @@ class CalcMain extends JFrame {
         labelMaterial.setBounds(x+220, y, xo+1, yo+1);
         labelSealing.setBounds(x+313, y, xo+1, yo+1);
         labelAnswer1.setBounds(x-199, y+93, xo+301, yo+1);
-        labelAnswer2.setBounds(x-158, y+113, xo+301, yo+1);
-        labelAnswer3.setBounds(x-158, y+133, xo+301, yo+1);
-        labelAnswer4.setBounds(x-158, y+153, xo+301, yo+1);
+        labelAnswer2.setBounds(x-157, y+113, xo+301, yo+1);
+        labelAnswer3.setBounds(x-157, y+133, xo+301, yo+1);
+        labelAnswer4.setBounds(x-157, y+153, xo+301, yo+1);
         fieldHeight.setBounds(x, y+33, xo+1, yo+1);
         fieldWeight.setBounds(x+100, y+33, xo+1, yo+1);
         fieldRadius.setBounds(x, y+33, xo+101, yo+1);
@@ -287,8 +287,8 @@ class CalcMain extends JFrame {
 		if (tooLongError == true) labelAnswer1.setText("(Значение одного или всех полей слишком длинное)");
 		else if ((h == 0) || (w == 0)) labelAnswer1.setText("(Одно или все поля заполнены некорректно)");
 		else {
-			/* S - Площадь ОК без уплотнения, So - Общая площадь ОК, S1c - Площадь 1 стекла в многостекольной ОК,
-			 * Sr - Площадь оконной рамы, Su - Площадь уплотнения, Soc - Площадь остекления,
+			/* S - площадь ОК без уплотнения, So - общая площадь ОК, S1c - площадь 1-го стекла в многостекольной ОК,
+			 * Sr - площадь оконной рамы, Su - площадь уплотнения, Soc - площадь остекления,
 			 * h - высота, w - ширина, r - ширина оконной рамы, u - ширина внешнего уплотнения ОК. */
 			int S; int So; int Sr; int Su; int Soc; int u = 1; int r = comboBox2Check();
 			S = h*w;
@@ -354,8 +354,8 @@ class CalcMain extends JFrame {
 			 * Soc - Площадь остекления, h - высота, w - ширина, r - ширина оконной рамы, u - ширина внешнего уплотнения ОК. */
 			double S; double So; double Sr; double Su; double Soc; double u = 1; int r = comboBox2Check();
 			S = Math.PI*h*w;
-			So = Math.PI*(h+u)*(w+u);
-			Soc = Math.PI*(h-r)*(w-r);
+			So = Math.PI*(h+2*u)*(w+2*u);
+			Soc = Math.PI*(h-2*r)*(w-2*r);
 			if (Soc > 0) S2c = Soc;
 			Su = So-S;
 			Sr = S-Soc;
