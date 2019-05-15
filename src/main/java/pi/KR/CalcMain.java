@@ -161,10 +161,10 @@ class CalcMain extends JFrame {
      * imageStringWfRectangle - строка со значением площади оконной рамы, полученным после проверки и вычисления (Прямоугольная ОК);
      * imageStringWfRound - строка со значением площади оконной рамы, полученным после проверки и вычисления (Круглая ОК);
      * imageStringWfOval - строка со значением площади оконной рамы, полученным после проверки и вычисления (Овальная ОК). */
-    JLabel labelType = new JLabel("Выберите оконную конструкцию");
-    JLabel labelHeight = new JLabel("Высота (см)");
-    JLabel labelWeight = new JLabel("Ширина (см)");
-    JLabel labelRadius = new JLabel("Радиус (см)");
+    JLabel labelType = new JLabel("Choose window");
+    JLabel labelHeight = new JLabel("Height");
+    JLabel labelWeight = new JLabel("Weight");
+    JLabel labelRadius = new JLabel("Radius");
     JLabel labelMaterial = new JLabel("Материал");
     JLabel labelSealing = new JLabel("Уплотнение");
     JLabel labelAnswer1 = new JLabel("");
@@ -181,18 +181,12 @@ class CalcMain extends JFrame {
     JLabel imageLabelWfRectangle = new JLabel(); JLabel imageLabelErrorWfRectangle = new JLabel(error); String imageStringWfRectangle;
     JLabel imageLabelWfRound = new JLabel(); JLabel imageLabelErrorWfRound = new JLabel(error); String imageStringWfRound;
     JLabel imageLabelWfOval = new JLabel(); JLabel imageLabelErrorWfOval = new JLabel(error); String imageStringWfOval;
-    URL imgURL1 = CalcMain.class.getResource("RectangleWindowDefault.png");
-    JLabel rectangleDefaultImageJLabel = new JLabel(new ImageIcon(imgURL1));
-    URL imgURL2 = CalcMain.class.getResource("RectangleWindow.png");
-    JLabel rectangleImageJLabel = new JLabel(new ImageIcon(imgURL2));
-    URL imgURL3 = CalcMain.class.getResource("RoundWindowDefault.png");
-    JLabel roundDefaultImageJLabel = new JLabel(new ImageIcon(imgURL3));
-    URL imgURL4 = CalcMain.class.getResource("RoundWindow.png");
-    JLabel roundImageJLabel = new JLabel(new ImageIcon(imgURL4));
-    URL imgURL5 = CalcMain.class.getResource("OvalWindowDefault.png");
-    JLabel ovalDefaultImageJLabel = new JLabel(new ImageIcon(imgURL5));
-    URL imgURL6 = CalcMain.class.getResource("OvalWindow.png");
-    JLabel ovalImageJLabel = new JLabel(new ImageIcon(imgURL6));
+    JLabel rectangleDefaultImageJLabel = new JLabel(catchPathException((byte)0));
+    JLabel rectangleImageJLabel = new JLabel(catchPathException((byte)1));
+    JLabel roundDefaultImageJLabel = new JLabel(catchPathException((byte)2));
+    JLabel roundImageJLabel = new JLabel(catchPathException((byte)3));
+    JLabel ovalDefaultImageJLabel = new JLabel(catchPathException((byte)4));
+    JLabel ovalImageJLabel = new JLabel(catchPathException((byte)5));
     JTextField fieldHeight = new JTextField(10);
     JTextField fieldWeight = new JTextField(10);
     JTextField fieldRadius = new JTextField(10);
@@ -206,9 +200,10 @@ class CalcMain extends JFrame {
     JComboBox<String> comboBoxSealing = new JComboBox<String>(comboSealing);
     DecimalFormat format = new DecimalFormat("##.00");
 	
-	/* Конструктор CalcMain(). Конструктор — это метод класса, который инициализирует новый объект после его создания.
+	/* Конструктор CalcMain(). Конструктор – это метод класса, который инициализирует новый объект после его создания.
 	 * В данном случае, при вызове конструктора вызываются методы super() и createGUI().
-	 * Метод super() устанавливает заголовок будущего окна, принимая в качестве параметра строку текста.
+	 * Метод super() – это вызов конструктора класса JFrame, в качестве параметра может принимать строку текста,
+	 * впоследствии установит её в качестве заголовка окна.
 	 * Имя конструктора всегда совпадает с именем класса, в котором он расположен.
 	 * У конструкторов нет типа возвращаемого результата - никакого, даже void.
 	 * Суть его использования в том, что не всегда удобно инициализировать все переменные класса при создании его экземпляра.
@@ -224,7 +219,7 @@ class CalcMain extends JFrame {
 	/* Метод createGUI() используется для инициализации окна и расположения на нем графических объектов. */
 	public void createGUI() {
 		/* Метод setDefaultCloseOperation() устанавливает условие, при котором окно будет закрыто.
-		 * Значение EXIT_ON_CLOSE указывает на то, что окно будет закрыто при нажатии кнопки 'Закрыть' (Close Box) */
+		 * Константа EXIT_ON_CLOSE указывает на то, что окно будет закрыто при нажатии кнопки 'Закрыть' (Close Box). */
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		/* Метод setSize() устанавливает размер окна, принимая значения высоты и ширины в пикселях. */
         setSize(663,700);
@@ -238,7 +233,7 @@ class CalcMain extends JFrame {
          * Значение false указывает на то, что изменение размера окна будет запрещено. */
         setResizable(false);
         /* Метод setBounds() устанавливает координаты объекта, add() - добавляет объект на окно,
-         * setActionCommand() - устанавливает команду для идентификации кнопки слушателем actionPerformed() */
+         * setActionCommand() - устанавливает команду для идентификации кнопки слушателем actionPerformed(). */
         labelType.setBounds(x-199, y, xo+99, yo+1);
         labelHeight.setBounds(x+13, y, xo+1, yo+1);
         labelWeight.setBounds(x+113, y, xo+1, yo+1);
@@ -424,7 +419,82 @@ class CalcMain extends JFrame {
 		return windowFrameWidth;
 	}
 	
-	/* Метод removeWaste() предназначен для очистки окна JFrame от ненужных JLabel и JField. Используется в методе changeFrame(). */
+	/* Метод catchPath() предназначен для проверки исключения NullPointerException при попытке присвоения экземпляру URL
+	 * некоторой ссылки. Исключение может возникнуть в случае, если файл, на который ссылается экземпляр, был перемещен,
+	 * удален, было изменено его имя и т.п. Т.е. в этом случае экземпляру будет присвоена ссылка на 'несуществующий' файл.
+	 * В теле метода catchPath() сначала выполняется условие switch-case, в котором проверяется, какую именно проверку
+	 * необходимо выполнить, путем считывания входного параметра: 0, 1, 2, 3, 4, 5.
+	 * После чего выполняется конструкция try-catch, в теле которой сначала идет инициализация экземпляра URL и
+	 * попытка присвоения ему ссылки на файл, за которой, при успешном присвоении, следует инициализация экземпляра
+	 * ImageIcon с экземпляром URL в качестве параметра и вывод экземпляра ImageIcon методом catchPath().
+	 * (1) В случае возникновения исключения иницализация экземпляра URL пропускается, после чего экземпляр ImageIcon
+	 * инициализируется со значением по умолчанию, после чего следует возвращение экзмепляра ImageIcon методом catchPath().
+	 * В случае вызова метода catchPath() с входным параметром, не учитываемым в условии switch-case, выполняется
+	 * инструкция, аналогичная возникновению исключения, т.е. (1). */
+	public ImageIcon catchPathException(byte selected) {
+		switch (selected) {
+		case 0:
+			try {
+				URL imgURL = CalcMain.class.getResource("RectangleWindowDefault.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		case 1:
+			try {
+				URL imgURL = CalcMain.class.getResource("RectangleWindow.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		case 2:
+			try {
+				URL imgURL = CalcMain.class.getResource("RoundWindowDefault.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		case 3:
+			try {
+				URL imgURL = CalcMain.class.getResource("RoundWindow.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		case 4:
+			try {
+				URL imgURL = CalcMain.class.getResource("OvalWindowDefault.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		case 5:
+			try {
+				URL imgURL = CalcMain.class.getResource("OvalWindow.png");
+				ImageIcon RectangleWindowDefault = new ImageIcon(imgURL);
+				return RectangleWindowDefault;
+			} catch(NullPointerException e) {
+				ImageIcon RectangleWindowDefault = new ImageIcon();
+				return RectangleWindowDefault;
+			}
+		default:
+			ImageIcon RectangleWindowDefault = new ImageIcon();
+			return RectangleWindowDefault;
+		}
+	}
+	
+	/* Метод removeWaste() предназначен для очистки окна JFrame от ненужных JLabel и JField. Используется в методе changeFrame().
+	 * Метод remove() удаляет объект с окна JFrame, принимая в качестве параметра ссылку на объект. */
 	public void removeWaste() {
 		remove(labelHeight);
 		remove(labelWeight);
@@ -628,10 +698,10 @@ class CalcMain extends JFrame {
 	        fieldHeight.setText(imageStringHeight);
 	        if (0 < imageStringHeight.length() & imageStringHeight.length() < 5) {
 	        	imageLabelHeight.setText(imageStringHeight);
-	        	imageLabelHeight.setBounds(xI+71-(4*imageStringHeight.length()), yI+212, xoI, yoI);
+	        	imageLabelHeight.setBounds(xI+71-(6*imageStringHeight.length()), yI+212, xoI, yoI);
 	        	add(imageLabelHeight);
 	        } else {
-	        	imageLabelHeightError.setBounds(xI+48, yI+212, xoI, yoI);
+	        	imageLabelHeightError.setBounds(xI+46, yI+212, xoI, yoI);
 	        	add(imageLabelHeightError);
 	        }
 	        imageStringWeight = String.valueOf(fieldCheck(fieldWeight.getText()));
