@@ -75,6 +75,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.DecimalFormat;
 
 /* Класс CalcMain является главным классом, определенным в данном файле (CalcMain.java).
@@ -180,12 +181,18 @@ class CalcMain extends JFrame {
     JLabel imageLabelWfRectangle = new JLabel(); JLabel imageLabelErrorWfRectangle = new JLabel(error); String imageStringWfRectangle;
     JLabel imageLabelWfRound = new JLabel(); JLabel imageLabelErrorWfRound = new JLabel(error); String imageStringWfRound;
     JLabel imageLabelWfOval = new JLabel(); JLabel imageLabelErrorWfOval = new JLabel(error); String imageStringWfOval;
-    JLabel rectangleDefaultImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\RectangleWindowDefault.png"));
-    JLabel rectangleImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\RectangleWindow.png"));
-    JLabel roundDefaultImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\RoundWindowDefault.png"));
-    JLabel roundImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\RoundWindow.png"));
-    JLabel ovalDefaultImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\OvalWindowDefault.png"));
-    JLabel ovalImageJLabel = new JLabel(new ImageIcon("src\\main\\java\\pi\\KR\\OvalWindow.png"));
+    URL imgURL1 = CalcMain.class.getResource("RectangleWindowDefault.png");
+    JLabel rectangleDefaultImageJLabel = new JLabel(new ImageIcon(imgURL1));
+    URL imgURL2 = CalcMain.class.getResource("RectangleWindow.png");
+    JLabel rectangleImageJLabel = new JLabel(new ImageIcon(imgURL2));
+    URL imgURL3 = CalcMain.class.getResource("RoundWindowDefault.png");
+    JLabel roundDefaultImageJLabel = new JLabel(new ImageIcon(imgURL3));
+    URL imgURL4 = CalcMain.class.getResource("RoundWindow.png");
+    JLabel roundImageJLabel = new JLabel(new ImageIcon(imgURL4));
+    URL imgURL5 = CalcMain.class.getResource("OvalWindowDefault.png");
+    JLabel ovalDefaultImageJLabel = new JLabel(new ImageIcon(imgURL5));
+    URL imgURL6 = CalcMain.class.getResource("OvalWindow.png");
+    JLabel ovalImageJLabel = new JLabel(new ImageIcon(imgURL6));
     JTextField fieldHeight = new JTextField(10);
     JTextField fieldWeight = new JTextField(10);
     JTextField fieldRadius = new JTextField(10);
