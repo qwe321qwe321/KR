@@ -164,7 +164,7 @@ class CalcMain extends JFrame {
     JLabel labelType = new JLabel("Выберите оконную конструкцию");
     JLabel labelHeight = new JLabel("Высота (см)");
     JLabel labelWeight = new JLabel("Ширина (см)");
-    JLabel labelRadius = new JLabel("Radius");
+    JLabel labelRadius = new JLabel("Радиус (см)");
     JLabel labelMaterial = new JLabel("Материал");
     JLabel labelSealing = new JLabel("Уплотнение");
     JLabel labelAnswer1 = new JLabel("");
