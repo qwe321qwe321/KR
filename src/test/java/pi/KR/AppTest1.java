@@ -9,7 +9,7 @@ public class AppTest1 {
 	CalcMain api = new CalcMain();
     @Test
     public void testApp() {
-        assertEquals(121, api.calculation(100, 10));
+        assertEquals(121, api.calculation(10, 10));
     }
     
 }
