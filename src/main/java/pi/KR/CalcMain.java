@@ -38,9 +38,6 @@
  * Синтаксис ; (точка с запятой) используется для обозначения конца оператора.
  * Компилятор воспринимает наличие точки с запятой в коде как конец инструкции/выражения. */
 
-
-
-
 /* Оператор package сообщает транслятору, в каком пакете должны определяться содержащиеся в данном файле (CalcMain.java) классы.
  * Пакеты задают набор раздельных пространств имен, в которых хранятся имена классов.
  * Если оператор package не указан, классы попадают в безымянное пространство имен, используемое по умолчанию.
@@ -55,14 +52,12 @@ package pi.KR;
  * определены именем или именами их пакетов, использование класса без обращения к пакету (без использования оператора import),
  * в котором находится класс, заранее, будет представлять собой длинную запись, в которой первым будет записано обращение к пакету,
  * а после – к классу, например:
- * 
- * javax.swing.JTextField firstTextField = new javax.swing.JTextField("Первое текстовое поле");
+ *  * javax.swing.JTextField firstTextField = new javax.swing.JTextField("Первое текстовое поле");
  * javax.swing.JTextField secondTextField = new javax.swing.JTextField("Второе текстовое поле");
  * javax.swing.JTextField thirdTextField = new javax.swing.JTextField("Третье текстовое поле");
  * 
  * В случае использования директивы импорта создание трех вышеперечисленных объектов класса JTextField будет иметь следующий вид:
- * 
- * import javax.swing.JTextField;
+ *  * import javax.swing.JTextField;
  * JTextField firstTextField = new JTextField("Первое текстовое поле");
  * JTextField secondTextField = new JTextField("Второе текстовое поле");
  * JTextField thirdTextField = new JTextField("Третье текстовое поле"). */
@@ -73,6 +68,7 @@ import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -255,6 +251,11 @@ class CalcMain extends JFrame {
         buttonCalculate.setBounds(x, y+63, xo+300, yo+1);
         buttonCalculate.setActionCommand("Рассчитать");
         
+        //fieldHeight.setBackground(Color.GREEN);
+        //fieldWeight.setBackground(Color.GREEN);
+        //buttonType.setBackground(Color.GREEN);
+        //buttonCalculate.setBackground(Color.GREEN);
+        
         add(labelType);
         add(labelHeight);
         add(labelWeight);
@@ -427,8 +428,8 @@ class CalcMain extends JFrame {
 	 * После чего выполняется конструкция try-catch, в теле которой сначала идет инициализация экземпляра URL и
 	 * попытка присвоения ему ссылки на файл, за которой, при успешном присвоении, следует инициализация экземпляра
 	 * ImageIcon с экземпляром URL в качестве параметра и вывод экземпляра ImageIcon методом catchPath().
-	 * (1) В случае возникновения исключения иницализация экземпляра URL пропускается, после чего экземпляр ImageIcon
-	 * инициализируется со значением по умолчанию, после чего следует возвращение экзмепляра ImageIcon методом catchPath().
+	 * (1) В случае возникновения исключения инициализация экземпляра URL пропускается, после чего экземпляр ImageIcon
+	 * инициализируется со значением по умолчанию, после чего следует возвращение экземпляра ImageIcon методом catchPath().
 	 * В случае вызова метода catchPath() с входным параметром, не учитываемым в условии switch-case, выполняется
 	 * инструкция, аналогичная возникновению исключения, т.е. (1). */
 	public ImageIcon catchPathException(byte selected) {
