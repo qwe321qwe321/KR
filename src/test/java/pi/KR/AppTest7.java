@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 /* Метод, тестирующий вычисления ОК прямоугольного типа, используя метод assertEquals(),
  * принимающий в качестве параметров ответ (число) и число, возвращенное методом calculation(). */
-public class AppTest1 {
+public class AppTest7 {
 	
 	CalcMain api = new CalcMain();
 	@Test
