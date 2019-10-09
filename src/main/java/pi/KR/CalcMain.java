@@ -159,3 +159,4 @@ class CalcMain extends JFrame {
      * imageStringWfOval - строка со значением площади оконной рамы, полученным после проверки и вычисления (Овальная ОК). */
     JLabel labelType = new JLabel("Выберите оконную конструкцию");
     JLabel labelHeight = new JLabel("Высота (см)");
+    JLabel labelWeight = new JLabel("Ширина (см)");
