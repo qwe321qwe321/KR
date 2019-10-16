@@ -251,10 +251,14 @@ class CalcMain extends JFrame {
         buttonCalculate.setBounds(x, y+63, xo+300, yo+1);
         buttonCalculate.setActionCommand("Рассчитать");
         
-        //fieldHeight.setBackground(Color.GREEN);
-        //fieldWeight.setBackground(Color.GREEN);
+        //getContentPane().setBackground(Color.GREEN);
         //buttonType.setBackground(Color.GREEN);
         //buttonCalculate.setBackground(Color.GREEN);
+        //fieldHeight.setBackground(Color.GREEN);
+        //fieldWeight.setBackground(Color.GREEN);
+        //comboBoxTypes.setBackground(Color.GREEN);
+        //comboBoxMaterial.setBackground(Color.GREEN);
+        //comboBoxSealing.setBackground(Color.GREEN);
         
         add(labelType);
         add(labelHeight);
